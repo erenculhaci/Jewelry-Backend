@@ -1,11 +1,11 @@
-const axios = require('axios');
+import axios from 'axios';
 const products = require('../products.json');
 
 const fetchGoldPrice = async () => {
   try {
     const response = await axios.get('https://www.goldapi.io/api/XAU/USD', {
       headers: {
-        'x-access-token': 'goldapi-2qoqfsm4ng7qkv-io',
+        'x-access-token': process.env.GOLD_API_ACCESS_TOKEN,
         'Content-Type': 'application/json',
       },
     });
@@ -13,8 +13,8 @@ const fetchGoldPrice = async () => {
     const pricePerGram = response.data.price / 31.1035; // 1 troy ounce = 31.1035 grams
     return pricePerGram;
   } catch (error) {
-    console.error('Error fetching gold price:', error.message);
-    return 85; // Fallback default
+    console.error('Error fetching gold price:', error.response?.data || error.message);
+    return 85.2; // Fallback default
   }
 };
 
@@ -65,6 +65,7 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     headers,
+    // print out the filtered products
     body: JSON.stringify(filteredProducts),
   };
 };

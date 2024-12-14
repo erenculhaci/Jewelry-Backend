@@ -129,3 +129,5 @@ out
 .pnp.*
 
 functions
+# Local Netlify folder
+.netlify
