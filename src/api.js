@@ -5,7 +5,7 @@ const fetchGoldPrice = async () => {
   try {
     const response = await axios.get('https://www.goldapi.io/api/XAU/USD', {
       headers: {
-        'x-access-token': process.env.GOLD_API_ACCESS_TOKEN,
+        'x-access-token': process.env.GOLD_API_KEY,
         'Content-Type': 'application/json',
       },
     });
@@ -14,7 +14,7 @@ const fetchGoldPrice = async () => {
     return pricePerGram;
   } catch (error) {
     console.error('Error fetching gold price:', error.response?.data || error.message);
-    return 85.2; // Fallback default
+    return 40; // Fallback default
   }
 };
 
