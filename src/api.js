@@ -18,12 +18,15 @@ const fetchGoldPrice = async () => {
   }
 };
 
+const allowedOrigins = ['https://jewelry-products.netlify.app'];
+
 exports.handler = async (event) => {
-  const headers = {
-    'Access-Control-Allow-Origin': 'https://jewelry-products.netlify.app/',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  };
+    const origin = event.headers.origin;
+    const headers = {
+        'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : 'https://jewelry-products.netlify.app',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    };
 
   // Handle preflight requests (OPTIONS)
   if (event.httpMethod === 'OPTIONS') {
