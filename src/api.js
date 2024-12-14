@@ -14,7 +14,7 @@ const fetchGoldPrice = async () => {
     return pricePerGram;
   } catch (error) {
     console.error('Error fetching gold price:', error.response?.data || error.message);
-    return 40; // Fallback default
+    return 85.2; // If the API fails, return a default value
   }
 };
 
@@ -28,7 +28,6 @@ exports.handler = async (event) => {
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
     };
 
-  // Handle preflight requests (OPTIONS)
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -65,7 +64,6 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     headers,
-    // print out the filtered products
     body: JSON.stringify(filteredProducts),
   };
 };
