@@ -1,0 +1,19 @@
+{
+  "name": "jewelry-backend",
+  "version": "1.0.0",
+  "description": "The Express.js backend side of the Jewelry Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx netlify-lambda serve src",
+    "build": "npx netlify-lambda build src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0"
+  }
+}
